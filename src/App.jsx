@@ -75,7 +75,7 @@ const App = () => {
 
   useEffect(() => {
     document.onclick = check;
-    setToToggle(document.querySelectorAll(".toggleColour"));
+    setToToggle(document.querySelectorAll("toggleColour"));
   }, []);
 
   useEffect(() => {
