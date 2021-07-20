@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import imageUrl from './hero.png';
 
 const App = () => {
-  const [toToggle, setToToggle] = useState([]);
-
   const navMenuDiv = useRef();
   const navMenu = useRef();
   const header = useRef();
   const navAction = useRef();
+  const iconLink = useRef();
 
   const checkParent = (t, elm) => {
     while (t.parentNode) {
@@ -47,11 +46,10 @@ const App = () => {
       navAction.current.classList.add('gradient');
       navAction.current.classList.remove('text-gray-800');
       navAction.current.classList.add('text-white');
-      //Use to switch toggleColour colours
-      for (let i = 0; i < toToggle.length; i++) {
-        toToggle[i].classList.add('text-gray-800');
-        toToggle[i].classList.remove('text-white');
-      }
+
+      iconLink.current.classList.add('text-gray-800');
+      iconLink.current.classList.remove('text-white');
+
       header.current.classList.add('shadow');
       navMenuDiv.current.classList.remove('bg-gray-100');
       navMenuDiv.current.classList.add('bg-white');
@@ -61,11 +59,9 @@ const App = () => {
       navAction.current.classList.add('bg-white');
       navAction.current.classList.remove('text-white');
       navAction.current.classList.add('text-gray-800');
-      //Use to switch toggleColour colours
-      for (let i = 0; i < toToggle.length; i++) {
-        toToggle[i].classList.add('text-white');
-        toToggle[i].classList.remove('text-gray-800');
-      }
+
+      iconLink.current.classList.add('text-white');
+      iconLink.current.classList.remove('text-gray-800');
 
       header.current.classList.remove('shadow');
       navMenuDiv.current.classList.remove('bg-white');
@@ -75,7 +71,6 @@ const App = () => {
 
   useEffect(() => {
     document.onclick = check;
-    setToToggle(document.querySelectorAll("toggleColour"));
   }, []);
 
   useEffect(() => {
@@ -93,8 +88,9 @@ const App = () => {
         <div className='w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2'>
           <div className='pl-4 flex items-center'>
             <a
-              className='toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl'
+              className='text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl'
               href='#'
+              ref={iconLink}
             >
               {/* Icon from: http://www.potlabicons.com/ */}
               <svg
